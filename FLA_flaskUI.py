@@ -1,6 +1,6 @@
 # FLA_flaskUI.py
 # A component of FRC LookAhead, though I'm sure it's more than usable elsewhere.
-# Copyright (c)2018 Logan Power.  Released under the terms of the BSD 3-clause license (included as LICENSE.txt)
+# Copyright (c)2018 Logan Power.  Released under the terms of the BSD 3-clause license (included as LICENSE.md)
 # Written with the help, love, support, and occasional sarcasm of FRC Team 2039, Rockford Robotics.
 
 # Import what we need from Flask.
