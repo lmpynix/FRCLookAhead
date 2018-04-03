@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>{{APPNAME}} {{VERSION}}</title>
+    <link type="text/css" rel="stylesheet" href="mainpage_style.css">
+  </head>
+  <body>
+    <div class="title">
+      <h1> <i> <img src="FLA_2039ed_Logo.svg" alt="FRC LookAhead Logo" title="FRC LookAhead Logo">{{
+          APPNAME }}</i><span> </span><span id="version">Version {{ VERSION }}</span></h1>
+    </div>
+    <div class="teaminfo">
+      <p> Team <span class="bigteaminfo">{{ your_team_number }}</span> is
+        ranked <span class="bigteaminfo">{{ your_ranking }}</span> out of <span
+          class="bigteaminfo">{{ total_teams }}</span>.</p>
+      <h2> Your next match is <span class="bigteaminfo"> match {{
+          next_match_number }}</span>: </h2>
+    </div>
+    <br>
+    <div class="tables">
+      <h2> Your {{ your_alliance_markup }} alliance next match:</h2>
+      {% for team in your_alliance %} {% endfor %}
+      <table style="width: 100%;" border="1">
+        <tbody>
+          <tr>
+            <td style="width: 55.2333px;">RANK</td>
+            <td style="width: 87.58px;">TEAM NO.</td>
+            <td>TEAM NAME</td>
+            <td>RECORD</td>
+            <td>LAST AUTO</td>
+            <td>LAST MATCH SCORE</td>
+            <td>W/L</td>
+            <td>LAST MATCH ENDGAME</td>
+          </tr>
+          <tr>
+            <td style="width: 55.2333px;">{{ team[0] }}</td>
+            <td style="width: 87.58px;">{{ team[1] }}</td>
+            <td style="width: 421.85px;">{{ team[2] }}</td>
+            <td style="width: 139.8px;">{{ team[3] }}</td>
+            <td style="width: 188.55px;">{{ team[4 }}</td>
+            <td style="width: 221.667px;">{{ team[5] }}</td>
+            <td style="width: 52.05px;">{{ team[6] }}</td>
+            <td style="width: 262.45px;">{{ team[7] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2> Opposing {{ other_alliance_markup }} alliance next match:</h2>
+      {% for team in other_alliance %}} {% endfor %}
+      <table style="width: 100%;" border="1">
+        <tbody>
+          <tr>
+            <td style="width: 55.2333px;">RANK</td>
+            <td style="width: 87.58px;">TEAM NO.</td>
+            <td>TEAM NAME</td>
+            <td style="width: 105.8px;">RECORD</td>
+            <td style="width: 132.55px;">LAST AUTO</td>
+            <td style="width: 190.667px;">LAST MATCH SCORE</td>
+            <td style="width: 46.45px;">W/L</td>
+            <td style="width: 394.45px;">LAST MATCH ENDGAME</td>
+          </tr>
+          <tr>
+            <td style="width: 55.2333px;">{{ team[0] }}</td>
+            <td style="width: 87.58px;">{{ team[1] }}</td>
+            <td>{{ team[2] }}</td>
+            <td style="width: 105.8px;">{{ team[3] }}</td>
+            <td style="width: 132.55px;">{{ team[4 }}</td>
+            <td style="width: 190.667px;">{{ team[5] }}</td>
+            <td style="width: 46.45px;">{{ team[6] }}</td>
+            <td style="width: 394.45px;">{{ team[7] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer">
+      <h2> Good luck out there! </h2>
+    </div>
+  </body>
+</html>
