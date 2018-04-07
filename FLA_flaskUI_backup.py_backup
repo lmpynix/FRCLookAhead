@@ -10,7 +10,7 @@ from flask import Flask, render_template, Markup
 from FLA_data import get_data_TBA as TBAdata
 
 # Version and application name constants.
-VERSION = "0.2 ALPHA"
+VERSION = "0.1 ALPHA"
 APPNAME = "FRC LookAhead (Alpha)"
 
 # Define what flask's 'app' is.
@@ -102,28 +102,16 @@ def build_table_entry(team_id, event_id):
     last_color = their_alliance[0]
     which_robot = their_alliance[1:].index(team_id) + 1
     # Get that alliance's score from the last match
-    try:
-        last_score = str(last_match["alliances"][last_color]["score"])
-    except:
-        last_score = "err:last_score"
+    last_score = str(last_match["alliances"][last_color]["score"])
     # Find autoRun status
-    try:
-        auto_run = last_match["score_breakdown"][last_color]["autoRobot" + str(which_robot)]
-    except:
-        auto_run = "err:auto_run"
+    auto_run = last_match["score_breakdown"][last_color]["autoRobot" + str(which_robot)]
     # Find endgame status
-    try:
-        endgame = last_match["score_breakdown"][last_color]["endgameRobot" + str(which_robot)]
-    except:
-        endgame = "err:endgame"
+    endgame = last_match["score_breakdown"][last_color]["endgameRobot" + str(which_robot)]
     # See if they won or lost the last match
-    try:
-        if last_match["winning_alliance"] == last_color:
-            winloss = 'W'
-        else:
-            winloss = 'L'
-    except:
-        winloss = 'E'
+    if last_match["winning_alliance"] == last_color:
+        winloss = 'W'
+    else:
+        winloss = 'L'
 
     # Get the team number.  This is a little hacky I know.
     team_number = team_id[3:]  # The 3: slices the 'frc' off of the front.

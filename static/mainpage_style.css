@@ -1,0 +1,89 @@
+body {
+	background-color: black;
+	font-family: sans-serif;
+	color: #00FF00;
+}
+
+button.refresh{
+	background-color:rgba(0,0,0,0);
+	background: transparent;
+    border: none !important;
+}
+img.refresh{
+	height:14px;
+}
+
+.winloss.W{
+	color:#00F;
+}
+.winloss.L{
+	color:#F00;
+}
+
+#countdown{
+	display:inline;
+}
+
+*{
+	margin:0px;
+}
+
+.team_info_table{
+	width:100%;
+}
+
+#version {
+	font-size: small;
+	font-weight: normal;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+	font-size: 40pt;
+	width: 100%;
+	color: #00FF00;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+.title > h1 {
+	font-size:75px;
+}
+
+.teaminfo {
+	width: 100%;
+	text-align: center;
+	font-size: 18pt;
+	color: #00FF00;
+}
+
+.bigteaminfo {
+	font-size: 32pt;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: xx-large;
+	font-weight: normal;
+	margin:0px;
+}
+
+.footer {
+	width: 100%;
+	text-align: center;
+	color: cyan;
+	font-weight: bold;
+}
+
+.red {
+	color: red;
+}
+
+.blue {
+	color: cyan;
+}
+
+.tables {
+	font-size: large;
+}
