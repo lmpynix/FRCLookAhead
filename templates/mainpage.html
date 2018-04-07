@@ -49,6 +49,20 @@
 					</tr>
 				</tbody>
 			</table>
+			<details>
+				<summary class="expand-title">
+					click for more info
+				</summary>
+				<table>
+					<tbody>
+						{% for detail in team[8] %}
+							<tr>
+								<td>{{detail}}</td><td>{{team[8][detail]}}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</details>
 			{% endfor %}
 			<!--Your alliance-->
 			<h2> Opposing {{ other_alliance_markup }} alliance next match:</h2>
@@ -77,6 +91,20 @@
 					</tr>
 				</tbody>
 			</table>
+			<details>
+				<summary class="expand-title">
+					click for more info
+				</summary>
+				<table>
+					<tbody>
+						{% for detail in team[8] %}
+							<tr>
+								<td>{{detail}}</td><td>{{team[8][detail]}}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</details>
 			{% endfor %}
 		</div>
 		<div class="footer">

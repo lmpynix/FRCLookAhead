@@ -101,6 +101,7 @@ def build_table_entry(team_id, event_id):
     their_alliance, opponents = team.get_last_match_alliance()
     last_color = their_alliance[0]
     which_robot = their_alliance[1:].index(team_id) + 1
+    prevmatchstats = team.get_last_match_breakdown()
     # Get that alliance's score from the last match
     try:
         last_score = str(last_match["alliances"][last_color]["score"])
@@ -128,8 +129,7 @@ def build_table_entry(team_id, event_id):
     # Get the team number.  This is a little hacky I know.
     team_number = team_id[3:]  # The 3: slices the 'frc' off of the front.
 
-    # TODO: this should be retrieved from TBA, not just put here.
-    team_name = "FIRST Robotics Competition Team " + str(team_number)
+    team_name = team.get_team_name()
 
     # Great, now we have all the data.  Put it all together.
-    return [ranking, team_number, team_name, record, auto_run, last_score, winloss, endgame]
+    return [ranking, team_number, team_name, record, auto_run, last_score, winloss, endgame, prevmatchstats]

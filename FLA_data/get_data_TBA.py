@@ -47,6 +47,14 @@ class TeamEntry(object):
         print("got {} characters".format(len(str(team_status_req.json()))))
         print("finished getting status data for team "+self.team_id)
         return team_status_req.json()
+        
+    def get_team_info_simple(self):
+        url = "https://www.thebluealliance.com/api/v3/team/" + self.team_id + "/simple"
+        print("getting simple team info for team "+self.team_id)
+        team_status_req = requests.get(url, {"X-TBA-Auth-Key": XTBAAUTHKEY})
+        print("got {} characters".format(len(str(team_status_req.json()))))
+        print("finished getting simple team info for team "+self.team_id)
+        return team_status_req.json()
 
     def get_next_prev_match(self, next_or_last="next"):
         """
@@ -187,9 +195,34 @@ class TeamEntry(object):
             your_alliance = ["blue","frc1","frc2",self.team_id]
             other_alliance = ["red","frc3","frc4","frc5"]
             #raise IndexError("This team is not in either of these alliances!  Something has gone wrong...")
-
         return your_alliance, other_alliance
-
+        
+    def get_last_match_breakdown(self):
+        # Pre-initialize some lists.
+        your_alliance = list()
+        other_alliance = list()
+        # Get the next match data.
+        lastmatch = self.get_next_prev_match("last")
+        # Get the two alliances from that match.
+        try:
+            last = lastmatch["score_breakdown"]
+        except:
+            print("could not find next match score breakdown")
+            last = []
+        try:
+            if self.team_id in lastmatch["alliances"]["red"]["team_keys"]:
+                return last['red']
+            else:
+                return last['blue']
+        except:
+            return ["error"]
+    
+    def get_team_name(self):
+        try:
+            return self.get_team_info_simple()['nickname']
+        except:
+            return self.tba_team_id
+    
     @property
     def get_status(self):
         return self.status
