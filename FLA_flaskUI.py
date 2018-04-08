@@ -10,7 +10,7 @@ from flask import Flask, render_template, Markup
 from FLA_data import get_data_TBA as TBAdata
 
 # Version and application name constants.
-VERSION = "0.1 ALPHA"
+VERSION = "0.2 ALPHA"
 APPNAME = "FRC LookAhead (Alpha)"
 
 # Define what flask's 'app' is.
@@ -101,23 +101,35 @@ def build_table_entry(team_id, event_id):
     their_alliance, opponents = team.get_last_match_alliance()
     last_color = their_alliance[0]
     which_robot = their_alliance[1:].index(team_id) + 1
+    prevmatchstats = team.get_last_match_breakdown()
     # Get that alliance's score from the last match
-    last_score = str(last_match["alliances"][last_color]["score"])
+    try:
+        last_score = str(last_match["alliances"][last_color]["score"])
+    except:
+        last_score = "err:last_score"
     # Find autoRun status
-    auto_run = last_match["score_breakdown"][last_color]["autoRobot" + str(which_robot)]
+    try:
+        auto_run = last_match["score_breakdown"][last_color]["autoRobot" + str(which_robot)]
+    except:
+        auto_run = "err:auto_run"
     # Find endgame status
-    endgame = last_match["score_breakdown"][last_color]["endgameRobot" + str(which_robot)]
+    try:
+        endgame = last_match["score_breakdown"][last_color]["endgameRobot" + str(which_robot)]
+    except:
+        endgame = "err:endgame"
     # See if they won or lost the last match
-    if last_match["winning_alliance"] == last_color:
-        winloss = 'W'
-    else:
-        winloss = 'L'
+    try:
+        if last_match["winning_alliance"] == last_color:
+            winloss = 'W'
+        else:
+            winloss = 'L'
+    except:
+        winloss = 'E'
 
     # Get the team number.  This is a little hacky I know.
     team_number = team_id[3:]  # The 3: slices the 'frc' off of the front.
 
-    # TODO: this should be retrieved from TBA, not just put here.
-    team_name = "FIRST Robotics Competition Team " + str(team_number)
+    team_name = team.get_team_name()
 
     # Great, now we have all the data.  Put it all together.
-    return [ranking, team_number, team_name, record, auto_run, last_score, winloss, endgame]
+    return [ranking, team_number, team_name, record, auto_run, last_score, winloss, endgame, prevmatchstats]
